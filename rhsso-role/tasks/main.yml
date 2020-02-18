@@ -1,0 +1,6 @@
+---
+
+- name: rhsso | Install
+  include: install.yml
+  tags:
+    - install

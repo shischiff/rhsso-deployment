@@ -1,0 +1,4 @@
+---
+- hosts: rhsso
+  roles:
+    - role: rhsso-role

@@ -1,0 +1,5 @@
+---
+
+rhsso_package_name: "rh-sso-{{ rhsso_version }}"
+rhsso_zip: "{{ rhsso_package_name }}.zip"
+rhsso_url: "http://my-web-server/rhsso/{{ rhsso_zip }}"

@@ -1,0 +1,5 @@
+---
+
+rhsso_version: "7.3.0.GA"
+rhsso_install_path: "/opt/rhsso"
+rhsso_home_path: "{{ rhsso_install_path }}/rhsso"
