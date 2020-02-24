@@ -1,0 +1,37 @@
+---
+
+- name: rhsso | Copy rhsso config
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.permissions }}"
+    owner: "{{ rhsso_user }}"
+    group: "{{ rhsso_group }}"
+  with_items:
+    - { src: "rhsso.service.j2",
+        dest: "/lib/systemd/system/rhsso.service",
+        permissions: "0640" }
+    - { src: "domain.xml.j2",
+        dest: "{{ rhsso_home_path }}/domain/configuration/domain.xml",
+        permissions: "0640" }
+    - { src: "jdbc.module.xml.j2",
+        dest: "{{ rhsso_jdbc_conf_path }}/module.xml",
+        permissions: "0640" }
+    - { src: "launch.sh",
+        dest: "{{ rhsso_home_path }}/bin/launch.sh",
+        permissions: "0750" }
+  notify: restart rhsso
+
+- name: rhsso | Copy Daemon script
+  template:
+    src: rhsso.service.j2
+    dest: /lib/systemd/system/rhsso.service
+    mode: 0644
+  notify: restart rhsso
+
+- name: rhsso | Manage service
+  systemd:
+    name: rhsso
+    state: started
+    enabled: True
+    daemon_reload: yes

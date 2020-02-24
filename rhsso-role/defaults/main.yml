@@ -1,5 +1,12 @@
 ---
 
 rhsso_version: "7.3.0.GA"
-rhsso_install_path: "/opt/rhsso"
-rhsso_home_path: "{{ rhsso_install_path }}/rhsso"
+rhsso_install_path: "/opt/rh"
+rhsso_home_path: "{{ rhsso_install_path }}/rh-sso-7.3"
+rhsso_user: "root"
+rhsso_group: "root"
+
+# Config Files & Paths
+rhsso_log_path: "/var/log/rhsso/"
+rhsso_jdbc_conf_path: "{{ rhsso_home_path }}/modules/system/layers/keycloak/org/postgresql/main"
+rhsso_running_configuration_file: "{{ rhsso_home_path }}/bin/domain."

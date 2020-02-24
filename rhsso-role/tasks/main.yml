@@ -4,3 +4,7 @@
   include: install.yml
   tags:
     - install
+- name: rhsso | Configure
+  include: config.yml
+  tags:
+    - configure

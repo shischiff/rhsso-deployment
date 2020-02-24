@@ -2,3 +2,6 @@
 - hosts: rhsso
   roles:
     - role: rhsso-role
+#- hosts: pgsql
+#  roles:
+#    - role: ansible-role-postgresql

@@ -16,3 +16,28 @@
     dest: "{{ rhsso_install_path }}"
     owner: "root"
     group: "root"
+
+- name: rhsso | Create JDBC config paths
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ rhsso_user }}"
+    group: "{{ rhsso_group }}"
+    recurse: yes
+  with_items:
+    - "{{ rhsso_jdbc_conf_path }}"
+
+- name: rhsso | Create log paths
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ rhsso_user }}"
+    group: "{{ rhsso_group }}"
+    recurse: yes
+  with_items:
+    - "{{ rhsso_log_path }}"
+
+- name: rhsso | Download JDBC driver
+  get_url:
+    url: "{{ jdbc_url }}"
+    dest: "{{ rhsso_jdbc_conf_path }}"

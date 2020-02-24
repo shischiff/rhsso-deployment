@@ -1,0 +1,23 @@
+[Unit]
+Description=The WildFly Application Server (Domain Clustered mode)
+After=syslog.target network.target
+Before=httpd.service
+
+[Service]
+Environment=LAUNCH_JBOSS_IN_BACKGROUND=1
+Environment="JAVA_HOME=/usr/lib/jvm/jre-1.8.0"
+Environment="JAVAPTH=/usr/lib/jvm/jre-1.8.0/bin"
+Environment="WILDFLY_SH={{ rhsso_home_path }}/bin/domain.sh"
+Environment="WILDFLY_SERVER_CONFIG=host-master.xml"
+Environment="WILDFLY_CONSOLE_LOG=/var/log/rhsso/console.log"
+Environment="WILDFLY_MODULEPATH={{ rhsso_home_path }}/modules"
+Environment="WILDFLY_BIND=0.0.0.0"
+Environment="RH_SSO7_SCLS_ENABLED=rhsso"
+User=root
+Group=root
+LimitNOFILE=102642
+PIDFile=/var/run/rhsso.pid
+ExecStart={{ rhsso_home_path }}/bin/launch.sh $JAVA_HOME $JAVAPTH $WILDFLY_MODULEPATH $WILDFLY_SH $WILDFLY_SERVER_CONFIG $WILDFLY_BIND $WILDFLY_CONSOLE_LOG $WILDFLY_SERVER_CONFIG
+
+[Install]
+WantedBy=multi-user.target

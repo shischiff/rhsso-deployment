@@ -1,0 +1,6 @@
+---
+# handlers file for rhsso
+- name: restart rhsso
+  systemd:
+    name: rhsso
+    state: restarted
