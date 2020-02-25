@@ -1,0 +1,5 @@
+---
+
+- name: rhsso | Create management user
+  shell: "{{ rhsso_home_path }}/bin/add-user.sh -ds {{ rhsso_management_user.name }} {{ rhsso_management_user.password }} | grep -o '<.*>'"
+  register: secret_value

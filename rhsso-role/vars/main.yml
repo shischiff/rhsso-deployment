@@ -3,9 +3,9 @@
 rhsso_package_name: "rh-sso-{{ rhsso_version }}"
 rhsso_zip: "{{ rhsso_package_name }}.zip"
 rhsso_url: "http://my_web_server/rhsso/{{ rhsso_zip }}"
-jdbc_url: "https://yum.postgresql.org/10/redhat/rhel-7-x86_64/postgresql-jdbc-42.2.10-1.rhel7.noarch.rpm"
+jdbc_url: "http://my_web_server/rhsso/postgresql-jdbc.jar"
 
-postgresql_ip: "<pgsql_ip>"
+postgresql_ip: "{{ groups['pgsql'][0] }}"
 postgresql_port: "5432"
 postgresql_user: "redhat"
 postgresql_password: "<>"

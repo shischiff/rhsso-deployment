@@ -14,6 +14,12 @@
     - { src: "domain.xml.j2",
         dest: "{{ rhsso_home_path }}/domain/configuration/domain.xml",
         permissions: "0640" }
+    - { src: "host-master.xml.j2",
+        dest: "{{ rhsso_home_path }}/domain/configuration/host-master.xml",
+        permissions: "0640" }
+    - { src: "host-slave.xml.j2",
+        dest: "{{ rhsso_home_path }}/domain/configuration/host-slave.xml",
+        permissions: "0640" }
     - { src: "jdbc.module.xml.j2",
         dest: "{{ rhsso_jdbc_conf_path }}/module.xml",
         permissions: "0640" }
@@ -28,6 +34,13 @@
     dest: /lib/systemd/system/rhsso.service
     mode: 0644
   notify: restart rhsso
+
+- name: rhsso | Firewall rule
+  firewalld:
+    port: 9999/tcp
+    immediate: yes
+    permanent: yes
+    state: enabled
 
 - name: rhsso | Manage service
   systemd:
