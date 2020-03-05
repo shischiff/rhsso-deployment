@@ -26,3 +26,12 @@ create hosts file following this template:
     ansible_python_interpreter=/usr/bin/python3
     
 
+## Configuration files
+
+### rh-sso role
+
+Edit vars/main.yml for postgrsql password and for package URL
+
+### ansible-role-postgresql
+
+Edit defaults/main.yml for postgresql password  
