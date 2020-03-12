@@ -23,7 +23,8 @@ create hosts file following this template:
     10.0.0.3                     # postgresql
     
     [pgsql:vars]
-    ansible_python_interpreter=/usr/bin/python3
+    # Provide the path to python on your machine:
+    ansible_python_interpreter=/usr/bin/python
     
 
 ## Configuration files

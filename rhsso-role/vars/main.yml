@@ -2,11 +2,19 @@
 
 rhsso_package_name: "rh-sso-{{ rhsso_version }}"
 rhsso_zip: "{{ rhsso_package_name }}.zip"
-rhsso_url: "http://my_web_server/rhsso/{{ rhsso_zip }}"
-jdbc_url: "http://my_web_server/rhsso/postgresql-jdbc.jar"
+jdbc_package_name: postgresql-jdbc.jar
+
+# source of zip file, choose between: [url | file]
+rhsso_source: url
+# configure either according to rhsso_zip_source
+rhsso_url: "http://my.web.server.com/rhsso/{{ rhsso_zip }}"
+rhsso_file: "/tmp/{{ rhsso_zip }}"
+
+jdbc_url: "http://my.web.server.com/rhsso/{{ jdbc_package_name }}"
+jdbc_file: "/tmp/{{ jdbc_package_name }}"
 
 postgresql_ip: "{{ groups['pgsql'][0] }}"
 postgresql_port: "5432"
 postgresql_user: "redhat"
-postgresql_password: "<>"
+postgresql_password: ""
 

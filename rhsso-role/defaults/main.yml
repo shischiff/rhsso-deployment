@@ -3,8 +3,13 @@
 rhsso_version: "7.3.0.GA"
 rhsso_install_path: "/opt/rh"
 rhsso_home_path: "{{ rhsso_install_path }}/rh-sso-7.3"
-rhsso_user: "root"
-rhsso_group: "root"
+
+# Owner
+rhsso_user: rhsso
+rhsso_group: rhsso
+rhsso_user_home: "/home/{{ rhsso_user }}"
+rhsso_user_shell: "/bin/sh"
+rhsso_user_uid: 1005
 
 # Config Files & Paths
 rhsso_log_path: "/var/log/rhsso/"
