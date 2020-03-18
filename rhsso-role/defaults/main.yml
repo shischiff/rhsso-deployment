@@ -16,6 +16,9 @@ rhsso_log_path: "/var/log/rhsso/"
 rhsso_jdbc_conf_path: "{{ rhsso_home_path }}/modules/system/layers/keycloak/org/postgresql/main"
 rhsso_running_configuration_file: "{{ rhsso_home_path }}/bin/domain."
 
+# Should Ansible configure Firewalld
+rhsso_firewalld: False
+
 rhsso_management_user:
     name: "admin"
     password: "admin123"
