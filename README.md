@@ -16,8 +16,8 @@ Automation of a RHSSO domain clustered server (master/slave) with postgresql db
 create hosts file following this template:
 
     [rhsso]
-    10.0.0.1 hostMaster=True     # this is the maste host
-    10.0.0.2                     # this is the slave host
+    10.0.0.1 ansible_ssh_private_key_file=/root/.ssh/key.pem hostMaster=True     # this is the maste host
+    10.0.0.2 ansible_ssh_private_key_file=/root/.ssh/key.pem                     # this is the slave host
     
     [pgsql]
     10.0.0.3                     # postgresql
