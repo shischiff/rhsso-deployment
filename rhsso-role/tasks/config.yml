@@ -41,7 +41,7 @@
     immediate: yes
     permanent: yes
     state: enabled
-  when: "{{ rhsso_firewalld }} == 'True'
+  when: rhsso_firewalld == 'True'
 
 - name: rhsso | Manage service
   systemd:
