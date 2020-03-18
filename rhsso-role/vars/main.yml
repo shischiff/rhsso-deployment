@@ -15,6 +15,7 @@ jdbc_file: "/tmp/{{ jdbc_package_name }}"
 
 postgresql_ip: "{{ groups['pgsql'][0] }}"
 postgresql_port: "5432"
+postgresql_db_name:  "keycloak"
 postgresql_user: "redhat"
 postgresql_password: ""
 
