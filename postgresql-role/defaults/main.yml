@@ -36,7 +36,6 @@ postgresql_locales:
 # Databases to ensure exist.
 postgresql_databases:
   - name: keycloak
-    login_user:
     owner: redhat
 
 # - name: exampledb # required; the rest are optional

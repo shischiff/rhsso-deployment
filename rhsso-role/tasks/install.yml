@@ -23,7 +23,7 @@
 
 - name: rhsso| copy zip from bastion to rh-sso
   copy:
-    src: "/tmp/{{ rhsso_zip }}"
+    src: "{{ rhsso_file }}"
     dest: /tmp/
     mode: 0644
     owner: "{{ rhsso_user }}"
@@ -81,7 +81,7 @@
 
 - name: rhsso| copy jdbc from bastion to rh-sso
   copy:
-    src: "/tmp/{{ jdbc_package_name }}"
+    src: "{{ jdbc_file }}"
     dest: /tmp/
     mode: 0644
     owner: "{{ rhsso_user }}"
