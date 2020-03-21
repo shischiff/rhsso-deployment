@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
-<host xmlns="urn:jboss:domain:8.0" name="master">
+<host xmlns="urn:jboss:domain:8.0" name="sso-master">
     <extensions>
         <extension module="org.jboss.as.jmx"/>
         <extension module="org.wildfly.extension.core-management"/>
@@ -85,7 +85,7 @@
     <servers>
         <!-- load-balancer should be removed in production systems and replaced with a better softare or hardare based one -->
         <server name="load-balancer" group="load-balancer-group"/>
-        <server name="server-one" group="auth-server-group" auto-start="true">
+        <server name="rhsso-master" group="auth-server-group" auto-start="true">
             <!--
               ~  Remote JPDA debugging for a specific server
               ~             <jvm name="default">
