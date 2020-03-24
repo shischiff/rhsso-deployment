@@ -20,3 +20,17 @@
     name: "{{ postgresql_python_library }}"
     state: present
     enablerepo: "{{ postgresql_enablerepo | default(omit, true) }}"
+
+- name: pgsql | Firewall rule
+  firewalld:
+    port: 5432/tcp
+    immediate: yes
+    permanent: yes
+    state: enabled
+
+- name: pgsql | liten on '*'
+  lineinfile:
+    path: /var/lib/pgsql/10/data/postgresql.conf
+    regexp: '^listen_addresses'
+    line: listen_addresses = '*'
+  notify: restart postgresql

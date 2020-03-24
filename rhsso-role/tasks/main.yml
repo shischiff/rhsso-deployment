@@ -12,3 +12,7 @@
   include: config.yml
   tags:
     - configure
+- name: rhsso | Keystore
+  include: keyStore.yml
+  tags:
+    - keystore

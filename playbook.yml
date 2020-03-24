@@ -1,7 +1,11 @@
 ---
-- hosts: pgsql
-  roles:
-    - role: postgresql-role
+#- hosts: pgsql
+#  roles:
+#    - role: postgresql-role
+#  tags:
+#    - db
 - hosts: rhsso
   roles:
     - role: rhsso-role
+  tags:
+    - sso

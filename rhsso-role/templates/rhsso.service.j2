@@ -18,8 +18,8 @@ Environment="WILDFLY_CONSOLE_LOG=/var/log/rhsso/console.log"
 Environment="WILDFLY_MODULEPATH={{ rhsso_home_path }}/modules"
 Environment="WILDFLY_BIND=0.0.0.0"
 Environment="RH_SSO7_SCLS_ENABLED=rhsso"
-User=root
-Group=root
+User={{ rhsso_user }}
+Group={{ rhsso_group }}
 LimitNOFILE=102642
 PIDFile=/var/run/rhsso.pid
 ExecStart={{ rhsso_home_path }}/bin/launch.sh $JAVA_HOME $JAVAPTH $WILDFLY_MODULEPATH $WILDFLY_SH $WILDFLY_DOMAIN_CONFIG $WILDFLY_BIND $WILDFLY_CONSOLE_LOG $WILDFLY_SERVER_CONFIG

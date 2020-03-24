@@ -41,7 +41,27 @@
     immediate: yes
     permanent: yes
     state: enabled
-  when: rhsso_firewalld == 'True'
+  when: "rhsso_firewalld == true"
+
+- name: rhsso | Firewall rule
+  firewalld:
+    port: 8593/tcp
+    immediate: yes
+    permanent: yes
+    state: enabled
+  when: "rhsso_firewalld == true"
+
+- name: rhsso | edit /etc/sysctl.conf to increase JGroup Rx buffer limits to 25MB UDP
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^net.core.rmem_max'
+    line: net.core.rmem_max=26214400
+
+- name: rhsso | edit /etc/sysctl.conf to increase JGroup Tx buffer limits to 1MB UDP
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^net.core.wmem_max'
+    line: net.core.wmem_max=1048576
 
 - name: rhsso | Manage service
   systemd:

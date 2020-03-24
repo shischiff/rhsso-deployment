@@ -26,3 +26,7 @@ keystore:
   keycloak_jks_password: change.me
   keystore_p12_password: change.me
   dns: www.example.com
+
+rhsso_admin_user:
+  name: "admin"
+  password: "admin123"
