@@ -19,7 +19,7 @@ postgresql_user: "redhat"
 postgresql_password: "change.me"
 
 keystore:
-  base_dir: /Users/sschiff/git/rhsso-deployment/keystore-demo       # full path to the keystore files location
+  base_dir: /root/keystore-demo       # full path to the keystore files location
   bundle: bundle.crt
   private_key: key.pem
   certificate: cert.crt
