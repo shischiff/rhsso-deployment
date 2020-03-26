@@ -17,13 +17,13 @@
 
 - name: rhsso | Download rhsso zip
   get_url:
-    url: "{{ rhsso_url }}"
+    url: "{{ rhsso_url }}{{ rhsso_zip }}"
     dest: "/tmp/"
   when: rhsso_source == 'url'
 
 - name: rhsso| copy zip from bastion to rh-sso
   copy:
-    src: "{{ rhsso_file }}"
+    src: "{{ rhsso_file }}{{ rhsso_zip }}"
     dest: /tmp/
     mode: 0644
     owner: "{{ rhsso_user }}"
@@ -75,13 +75,13 @@
 
 - name: rhsso | Download JDBC driver
   get_url:
-    url: "{{ jdbc_url }}"
+    url: "{{ jdbc_url }}{{ jdbc_package_name }}"
     dest: "{{ rhsso_jdbc_conf_path }}"
   when: rhsso_source == 'url'
 
 - name: rhsso| copy jdbc from bastion to rh-sso
   copy:
-    src: "{{ jdbc_file }}"
+    src: "{{ jdbc_file }}{{ jdbc_package_name }}"
     dest: /tmp/
     mode: 0644
     owner: "{{ rhsso_user }}"

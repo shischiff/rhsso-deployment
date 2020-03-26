@@ -1,0 +1,12 @@
+[rhsso-master]
+10.0.0.1 hostName=rhsso-master hostMaster=True ansible_ssh_private_key_file=~/.ssh/key1.pem
+
+[rhsso-slave]
+10.0.0.2 hostName=rhsso-slave ansible_ssh_private_key_file=~/.ssh/key2.pem
+
+[pgsql]
+10.0.0.3
+
+[rhsso:children]
+rhsso-master
+rhsso-slave

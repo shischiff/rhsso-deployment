@@ -3,8 +3,5 @@
 - name: rhsso | Create management user (clustered domain managment)
   shell: "{{ rhsso_home_path }}/bin/add-user.sh -ds {{ rhsso_management_user.name }} {{ rhsso_management_user.password }} | grep -o '<.*>'"
   register: secret_value
-
-- name: rhsso | Create admin user (SSO master role)
-  shell: "{{ rhsso_home_path }}/bin/add-user-keycloak.sh --dc {{ rhsso_home_path }}/domain/configuration/ -r master -u {{ rhsso_admin_user.name }} -p {{ rhsso_admin_user.password }} --domain"
-  register: result
   notify: restart rhsso
+
