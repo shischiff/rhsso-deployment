@@ -75,14 +75,14 @@
 
 - name: rhsso | Download JDBC driver
   get_url:
-    url: "{{ jdbc_url }}{{ jdbc_package_name }}"
+    url: "{{ rhsso_url }}{{ jdbc_package_name }}"
     dest: "{{ rhsso_jdbc_conf_path }}"
   when: rhsso_source == 'url'
 
 - name: rhsso| copy jdbc from bastion to rh-sso
   copy:
-    src: "{{ jdbc_file }}{{ jdbc_package_name }}"
-    dest: /tmp/
+    src: "{{ rhsso_file }}{{ jdbc_package_name }}"
+    dest: "{{ rhsso_jdbc_conf_path }}"
     mode: 0644
     owner: "{{ rhsso_user }}"
     group: "{{ rhsso_group }}"

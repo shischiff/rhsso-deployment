@@ -1,7 +1,28 @@
 ---
 
-- name: rhsso | Create management user (clustered domain managment)
-  shell: "{{ rhsso_home_path }}/bin/add-user.sh -ds {{ rhsso_management_user.name }} {{ rhsso_management_user.password }} | grep -o '<.*>'"
-  register: secret_value
+- name: rhsso | create temp unique uuid
+  set_fact: uuid={{ 99999999 | random | to_uuid }}
+
+- name: rhsso | Create configuration dir for keycloak-add-user.json
+  file:
+    path: "{{ rhsso_home_path }}/domain/servers/rhsso-master/configuration/"
+    state: directory
+
+- name: rhsso | Create temp dir for keycloak-add-user.json creation
+  file:
+    path: "/tmp/{{ uuid }}"
+    state: directory
+
+- name: rhsso | Create admin user (SSO master role)
+  shell: "{{ rhsso_home_path }}/bin/add-user-keycloak.sh --dc /tmp/{{ uuid }} -r master -u {{ rhsso_admin_user.name }} -p {{ rhsso_admin_user.password }} --domain"
+  register: result
   notify: restart rhsso
 
+- name: rhsso | Move keycloak-add-user.json to config location
+  copy:
+    remote_src: True
+    src: "/tmp/{{ uuid }}/keycloak-add-user.json"
+    dest: "{{ rhsso_home_path }}/domain/servers/rhsso-master/configuration/keycloak-add-user.json"
+    mode: 0644
+    owner: "{{ rhsso_user }}"
+    group: "{{ rhsso_group }}"

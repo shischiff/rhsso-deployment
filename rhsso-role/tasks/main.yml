@@ -12,6 +12,7 @@
 
 - name: rhsso | Users
   include: users.yml
+  when: inventory_hostname in groups['rhsso-master']
   tags:
     - users
 
