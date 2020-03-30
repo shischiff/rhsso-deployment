@@ -31,6 +31,13 @@
                     <properties path="application-roles.properties" relative-to="jboss.domain.config.dir"/>
                 </authorization>
             </security-realm>
+            <security-realm name="UndertowRealm">
+                <server-identities>
+                    <ssl>
+                        <keystore path="keycloak.jks" relative-to="jboss.domain.config.dir" keystore-password="{{ keystore.keycloak_jks_password }}"/>
+                    </ssl>
+                </server-identities>
+            </security-realm>
         </security-realms>
         <audit-log>
             <formatters>
@@ -66,10 +73,10 @@
     </domain-controller>
     <interfaces>
         <interface name="management">
-            <inet-address value="${jboss.bind.address.management:0.0.0.0}"/>
+            <inet-address value="${jboss.bind.address.management:{{ inventory_hostname }}}"/>
         </interface>
         <interface name="public">
-            <inet-address value="${jboss.bind.address:0.0.0.0}"/>
+            <inet-address value="${jboss.bind.address:{{ inventory_hostname }}}"/>
         </interface>
     </interfaces>
     <jvms>

@@ -21,6 +21,8 @@ Environment="RH_SSO7_SCLS_ENABLED=rhsso"
 User={{ rhsso_user }}
 Group={{ rhsso_group }}
 LimitNOFILE=102642
+TimeoutStartSec=600
+TimeoutStopSec=600
 PIDFile=/var/run/rhsso.pid
 ExecStart={{ rhsso_home_path }}/bin/launch.sh $JAVA_HOME $JAVAPTH $WILDFLY_MODULEPATH $WILDFLY_SH $WILDFLY_DOMAIN_CONFIG $WILDFLY_BIND $WILDFLY_CONSOLE_LOG $WILDFLY_SERVER_CONFIG
 

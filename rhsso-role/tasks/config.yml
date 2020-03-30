@@ -66,10 +66,3 @@
     path: /etc/sysctl.conf
     regexp: '^net.core.wmem_max'
     line: net.core.wmem_max=1048576
-
-- name: rhsso | Manage service
-  systemd:
-    name: rhsso
-    state: started
-    enabled: True
-    daemon_reload: yes

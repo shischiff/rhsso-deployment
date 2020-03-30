@@ -451,7 +451,7 @@
                 <server name="default-server">
                     <ajp-listener name="ajp" socket-binding="ajp"/>
                     <http-listener name="default" socket-binding="http" redirect-socket="https" enable-http2="true"/>
-                    <https-listener name="https" socket-binding="https" security-realm="ApplicationRealm" enable-http2="true"/>
+                    <https-listener name="https" socket-binding="https" security-realm="UndertowRealm" enable-http2="true"/>
                     <host name="default-host" alias="localhost">
                         <location name="/" handler="welcome-content"/>
                         <http-invoker security-realm="ApplicationRealm"/>
@@ -624,7 +624,7 @@
             <inet-address value="${jboss.bind.address.management:127.0.0.1}"/>
         </interface>
         <interface name="public">
-            <inet-address value="${jboss.bind.address:0.0.0.0}"/>
+            <inet-address value="${jboss.bind.address:{{ inventory_hostname }}}"/>
         </interface>
         <interface name="private">
             <inet-address value="${jboss.bind.address.private:127.0.0.1}"/>

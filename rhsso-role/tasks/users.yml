@@ -7,6 +7,8 @@
   file:
     path: "{{ rhsso_home_path }}/domain/servers/rhsso-master/configuration/"
     state: directory
+    owner: "{{ rhsso_user }}"
+    group: "{{ rhsso_group }}"
 
 - name: rhsso | Create temp dir for keycloak-add-user.json creation
   file:
@@ -16,7 +18,6 @@
 - name: rhsso | Create admin user (SSO master role)
   shell: "{{ rhsso_home_path }}/bin/add-user-keycloak.sh --dc /tmp/{{ uuid }} -r master -u {{ rhsso_admin_user.name }} -p {{ rhsso_admin_user.password }} --domain"
   register: result
-  notify: restart rhsso
 
 - name: rhsso | Move keycloak-add-user.json to config location
   copy:
@@ -26,3 +27,11 @@
     mode: 0644
     owner: "{{ rhsso_user }}"
     group: "{{ rhsso_group }}"
+  notify: restart rhsso
+
+- name: rhsso | Manage service
+  systemd:
+    name: rhsso
+    state: started
+    enabled: True
+    daemon_reload: yes
