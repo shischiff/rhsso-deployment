@@ -10,6 +10,21 @@
     name: unzip
     state: present
 
+- name: rhsso | Ensure rhsso group exists
+  group:
+    name: "{{ rhsso_group }}"
+    state: present
+
+- name: rhsso | Ensure rhsso user exists
+  user:
+    name: "{{ rhsso_user }}"
+    group: "{{ rhsso_group }}"
+    shell: "{{ rhsso_user_shell }}"
+    createhome: yes
+    home: "{{ rhsso_user_home }}"
+    uid: "{{ rhsso_user_uid }}"
+    state: present
+
 - name: rhsso | mkdir
   file:
     path: "{{ rhsso_install_path }}"
@@ -29,21 +44,6 @@
     owner: "{{ rhsso_user }}"
     group: "{{ rhsso_group }}"
   when: rhsso_source == 'file'
-
-- name: rhsso | Ensure rhsso group exists
-  group:
-    name: "{{ rhsso_group }}"
-    state: present
-
-- name: rhsso | Ensure rhsso user exists
-  user:
-    name: "{{ rhsso_user }}"
-    group: "{{ rhsso_group }}"
-    shell: "{{ rhsso_user_shell }}"
-    createhome: yes
-    home: "{{ rhsso_user_home }}"
-    uid: "{{ rhsso_user_uid }}"
-    state: present
 
 - name: rhsso | Extract zip in the install directory
   unarchive:
