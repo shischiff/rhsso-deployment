@@ -18,6 +18,14 @@
     state: "{{ postgresql_service_state }}"
     enabled: "{{ postgresql_service_enabled }}"
 
+- name: pgsql | liten on '*'
+  lineinfile:
+    path: /var/lib/pgsql/10/data/postgresql.conf
+    regexp: '^listen_addresses'
+    line: listen_addresses = '*'
+  notify: restart postgresql
+  when: ansible_os_family == 'RedHat'
+
 # Configure PostgreSQL.
 - import_tasks: users.yml
 - import_tasks: databases.yml
